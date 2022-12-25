@@ -28,11 +28,22 @@ wound_chart = [
 #     "10": {"3", "3", "3", "3", "3", "3", "3", "3", "4","4"],
 # ]
 
-def main():
+def dice_roll(sides = 6):
+    return random.randint(1,sides)
 
+def main():
 
     for i in range (0,10):
         print(wound_chart[i])
+    seen = [0] * 6
+    print(seen)
+    for i in range(100):
+
+        x = dice_roll()
+        # value back to array index in stupid bc I am no python wizard
+        tmp = seen[x-1]
+        seen[x-1] = tmp + 1
+    print(seen)
 
 
 if __name__ == "__main__":

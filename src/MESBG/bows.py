@@ -1,5 +1,5 @@
 import random
-
+import numpy as np
 wound_chart = {
     "1": {"4", "5", "5", "6", "6", "6/4", "6/5", "6/6", "-", "-"},
     "2": {"4", "4", "5", "5", "6", "6", "6/4", "6/5", "6/6", "-"},
@@ -13,9 +13,17 @@ wound_chart = {
     "10": {"3", "3", "3", "3", "3", "3", "3", "3", "4","4"},
 }
 
+wound_matrix = np.chararray((10, 10))
+for i in range(0,9)
+wound_matrix [1:] = {"4", "5", "5", "6", "6", "6/4", "6/5", "6/6", "-", "-"}
+
 
 def main():
-    print("hello")
+    print(wound_chart)
+    a = np.matrix('1 2; 3 4')
+    # has to ' char. 
+    # b = np.matrix("1 2; 3 4: 5 6")
+    print(wound_matrix)
 
 
 if __name__ == "__main__":

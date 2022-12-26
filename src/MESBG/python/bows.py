@@ -19,7 +19,23 @@ wound_chart = [
 def dice_roll(sides = 6):
     return random.randint(1,sides)
 
-def ranged_attack(atk_strength, def_defense):
+
+def ranged_attack(attacker, defender):
+    if (not isinstance(attacker, container.Unit)) :
+        print("hello")
+    if (not isinstance(defender, container.Unit)) :
+        print("hello")
+
+
+    strength = attacker.strength
+    defense = defender.defense
+
+    
+
+
+
+
+def perform_ranged_attack(atk_strength, def_defense):
     value = compare_characteristics(atk_strength, def_defense)
     if (value == -1):
         return False
@@ -32,6 +48,9 @@ def ranged_attack(atk_strength, def_defense):
         if (roll >= value[0]):
             return dice_roll() >= value[1]
     return dice_roll() >= int(value)
+
+
+
 
 def compare_characteristics(strength, defense):
     value = wound_chart[strength][defense]
@@ -50,12 +69,13 @@ def main():
     print("Legolas")
     print(legolas.toString())
 
-    for i in range(10):
+    ranged_attack(legolas, dale_archer)
+    # for i in range(10):
 
-        if (ranged_attack(3, 6) == True):
-            print("Hit")
-        else:
-            print("Miss")
+    #     if (ranged_attack(3, 6) == True):
+    #         print("Hit")
+    #     else:
+    #         print("Miss")
 
 
 if __name__ == "__main__":

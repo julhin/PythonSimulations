@@ -1,6 +1,8 @@
 import random
 import numpy as np
-from array import * 
+from array import *
+import container
+
 
 wound_chart = [
         ["4", "5", "5", "6", "6", "6/4", "6/5", "6/6", "-", "-"],
@@ -31,6 +33,15 @@ wound_chart = [
 def dice_roll(sides = 6):
     return random.randint(1,sides)
 
+def ranged_attack(atk_strength, def_defense):
+    return 0
+
+def compare_characteristics(strength, defense):
+    value = wound_chart[strength, defense]
+    if (value == '-'):
+        return 0
+
+
 def main():
 
     for i in range (0,10):
@@ -44,6 +55,11 @@ def main():
         tmp = seen[x-1]
         seen[x-1] = tmp + 1
     print(seen)
+
+    dale_archer = container.Unit(6, '4/3', 4, 5, 1, 1, 4)
+    print(dale_archer.toString())
+
+    d
 
 
 if __name__ == "__main__":

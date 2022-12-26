@@ -34,12 +34,25 @@ def dice_roll(sides = 6):
     return random.randint(1,sides)
 
 def ranged_attack(atk_strength, def_defense):
-    return 0
+    value = compare_characteristics(atk_strength, def_defense)
+
+    if (value == -1):
+        return False
+    if (value.__contains__('/')):
+        tmp = value.split('/')
+        if (len(tmp) != 2):
+            #raise error -> data is corrupt
+            return false 
+        roll = dice_roll()
+        if (roll >= value[0]):
+            return dice_roll() >= value[1]
+    return dice_roll() >= int(value)
 
 def compare_characteristics(strength, defense):
-    value = wound_chart[strength, defense]
+    value = wound_chart[strength][defense]
     if (value == '-'):
-        return 0
+        return -1
+    return value
 
 
 def main():
@@ -59,7 +72,12 @@ def main():
     dale_archer = container.Unit(6, '4/3', 4, 5, 1, 1, 4)
     print(dale_archer.toString())
 
-    d
+    for i in range(10):
+
+        if (ranged_attack(3, 6) == True):
+            print("Hit")
+        else:
+            print("Miss")
 
 
 if __name__ == "__main__":

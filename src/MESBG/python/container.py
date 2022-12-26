@@ -23,16 +23,16 @@ class Unit:
 class HeroUnit(Unit):
     def __init__(self,move, fight, strength, defense, attacks,
     wounds, courage, might, will, fate):
-        super.__init__(self, move, fight, strength, defense, attacks,
+        super().__init__(move, fight, strength, defense, attacks,
         wounds, courage)
         self.might = might
         self.will = will
         self.fate = fate
 
-    def toString():
+    def toString(self):
         tmp = f'''
     Might: {self.might},
     Will: {self.will},
     Fate: {self.fate}
         '''
-        return super().toString()
+        return super().toString() + tmp

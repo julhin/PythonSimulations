@@ -37,7 +37,13 @@ def battleRound(atkDice: int, defDice: int):
     print(defender)
     casAtk = 0
     casDef = 0
-    for i in range(0, len(defender)):
+
+    if (len(defender) <= len(attacker)):
+        dicetocheck = len(defender)
+    else:
+        dicetocheck = len(attacker)
+
+    for i in range(0, dicetocheck):
         if (defender[i] >= attacker[i]):
             casAtk = casAtk + 1
         else:
@@ -45,37 +51,25 @@ def battleRound(atkDice: int, defDice: int):
     return (casAtk, casDef)
 
 
-def fight(attacker: int, defender: int):
+def battle(attacker: int, defender: int):
     # fight sequence
     while True:
-        print(f"Armies attacker: {attacker}")
-        print(f"Armies defender: {defender}")
+        # print(f"Armies attacker: {attacker}")
+        # print(f"Armies defender: {defender}")
         # how to
         if (attacker == 0):
-            return defender
+            return 0
         if (defender == 0):
-            return attacker
+            return 1
 
         atkDice = checkDiceAtttacker(attacker)
         defDice = checkDiceDefender(defender)
 
         result = battleRound(atkDice, defDice)
-        print(f"attacker: {result[0]}")
-        print(f"defender: {result[1]}")
+        # print(f"attacker: {result[0]}")
+        # print(f"defender: {result[1]}")
         attacker = attacker - result[0]
         defender = defender - result[1]
-
-    # check if one side is killed
-
-    # check how may atacker dice
-
-    # check defender dice
-
-    # roll dice
-
-    # remove casualties
-
-    # goto new round
 
 
 if __name__ == "__main__":
@@ -89,4 +83,7 @@ if __name__ == "__main__":
             continue
 
     max_def_dice = x
-    fight(10, 5)
+    battleResults = []
+    for i in range(100):
+        battleResults.append(battle(10, 5))
+    print(battleResults)

@@ -2,6 +2,7 @@ import random
 
 max_atk_dice = 3
 max_def_dice = 3
+iterations = 100
 
 
 def dice_roll(sides=6):
@@ -33,8 +34,10 @@ def battleRound(atkDice: int, defDice: int):
     attacker.sort(reverse=True)
     defender.sort(reverse=True)
     # compare resulst and return casualaties
-    print(attacker)
-    print(defender)
+
+    # print(attacker)
+    # print(defender)
+    # print("----------")
     casAtk = 0
     casDef = 0
 
@@ -56,7 +59,7 @@ def battle(attacker: int, defender: int):
     while True:
         # print(f"Armies attacker: {attacker}")
         # print(f"Armies defender: {defender}")
-        # how to
+        # return value of winner: attacker == 0 return defneder victory
         if (attacker == 0):
             return 0
         if (defender == 0):
@@ -82,8 +85,27 @@ if __name__ == "__main__":
             print("please enter valid input")
             continue
 
+        s = input("num of iterations (default is 100):")
+    y = 100
+
+    try:
+        y = int(s)
+    except:
+        print("value: 100")
+        # make atk_dice and def_dice customizable
+
     max_def_dice = x
+    iterations = y
     battleResults = []
-    for i in range(100):
-        battleResults.append(battle(10, 5))
-    print(battleResults)
+    for i in range(iterations):
+        battleResults.append(battle(10, 9))
+    atkWins = 0
+    defWins = 0
+    for i in range(0, len(battleResults)):
+        if (battleResults[i] == 1):
+            atkWins += 1
+        else:
+            defWins += 1
+
+    print(atkWins)
+    print(defWins)

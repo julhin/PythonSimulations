@@ -75,27 +75,25 @@ def battle(attacker: int, defender: int):
         defender = defender - result[1]
 
 
-if __name__ == "__main__":
-    while True:
-        s = input("Def dice (2,3)? ")
+def getUserInputInteger(txt):
+    cnt = 0
+    while cnt < 10:
+        s = input(txt)
         try:
             x = int(s)
-            break
+            return x
         except:
-            print("please enter valid input")
+            print("please enter a valid input")
+            cnt += 1
             continue
 
-        s = input("num of iterations (default is 100):")
-    y = 100
 
-    try:
-        y = int(s)
-    except:
-        print("value: 100")
-        # make atk_dice and def_dice customizable
-
-    max_def_dice = x
-    iterations = y
+if __name__ == "__main__":
+    # make armies customizable
+    # make iteratons customizable
+    defDice = getUserInputInteger("Enter defender dice (2,3):")
+    iterations = getUserInputInteger("Enter iterations")
+    max_def_dice = def_dice
     battleResults = []
     for i in range(iterations):
         battleResults.append(battle(10, 9))

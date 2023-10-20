@@ -118,14 +118,17 @@ if __name__ == "__main__":
             resultBattle, casulatiesATK, casulatiesDEF = battle(
                 armeisAtk, armeisDEF)
             # battleResults.append(resultBattle)
-            results["winner"].append([resultBattle])
-            results["casATK"].append([casulatiesATK])
-            results["casDEF"].append([casulatiesDEF])
+            results["winner"].append(resultBattle)
+            results["casATK"].append(casulatiesATK)
+            results["casDEF"].append(casulatiesDEF)
 
     print(results)
     winsAtk, winsDef = 0, 0
-    for winner, casAtk, casDef in results.items():
+    for winner in results.items():
+        print(winner)
         if (winner == 1):
             winsAtk += 1
         else:
             winsDef += 1
+    print("attacker wins: " + str(winsAtk))
+    print("defender wins: " + str(winsDef))

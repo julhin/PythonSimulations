@@ -1,4 +1,5 @@
 import random
+import json
 
 max_atk_dice = 3
 max_def_dice = 3
@@ -56,23 +57,26 @@ def battleRound(atkDice: int, defDice: int):
 
 def battle(attacker: int, defender: int):
     # fight sequence
+    casulatiesATK = 0
+    casulatiesDEF = 0
     while True:
         # print(f"Armies attacker: {attacker}")
         # print(f"Armies defender: {defender}")
         # return value of winner: attacker == 0 return defneder victory
         if (attacker == 0):
-            return 0
+            # def wins
+            return 0, casulatiesATK, casulatiesDEF
         if (defender == 0):
-            return 1
+            # atk wins
+            return 1, casulatiesATK, casulatiesDEF
 
         atkDice = checkDiceAtttacker(attacker)
         defDice = checkDiceDefender(defender)
-
         result = battleRound(atkDice, defDice)
-        # print(f"attacker: {result[0]}")
-        # print(f"defender: {result[1]}")
         attacker = attacker - result[0]
         defender = defender - result[1]
+        casulatiesATK += result[0]
+        casulatiesDEF += result[1]
 
 
 def getUserInputInteger(txt):
@@ -89,21 +93,39 @@ def getUserInputInteger(txt):
 
 
 if __name__ == "__main__":
-    # make armies customizable
-    # make iteratons customizable
-    defDice = getUserInputInteger("Enter defender dice (2,3):")
-    iterations = getUserInputInteger("Enter iterations")
-    max_def_dice = def_dice
-    battleResults = []
-    for i in range(iterations):
-        battleResults.append(battle(10, 9))
-    atkWins = 0
-    defWins = 0
-    for i in range(0, len(battleResults)):
-        if (battleResults[i] == 1):
-            atkWins += 1
-        else:
-            defWins += 1
+    # make fiel for std input
+    if getUserInputInteger("standard values? (1 yes, 0 no): ") == 1:
+        # read standard values
+        pass
+    else:
+        def_dice = getUserInputInteger("Enter defender dice (2,3): ")
+        iterations = getUserInputInteger("Enter iterations: ")
+        runs = getUserInputInteger("Enter runs: ")
+        armeisAtk = getUserInputInteger("Enter attacker armies: ")
+        armeisDEF = getUserInputInteger("Enter defender armies: ")
+        max_def_dice = def_dice
 
-    print(atkWins)
-    print(defWins)
+    # battleResults = []
+    casulatiesATK = 0
+    casulatiesDEF = 0
+# dict structure: number of battles
+    results = dict()
+    results["winner"] = []
+    results["casATK"] = []
+    results["casDEF"] = [3]
+    for _ in range(runs):
+        for i in range(iterations):
+            resultBattle, casulatiesATK, casulatiesDEF = battle(
+                armeisAtk, armeisDEF)
+            # battleResults.append(resultBattle)
+            results["winner"].append([resultBattle])
+            results["casATK"].append([casulatiesATK])
+            results["casDEF"].append([casulatiesDEF])
+
+    print(results)
+    winsAtk, winsDef = 0, 0
+    for winner, casAtk, casDef in results.items():
+        if (winner == 1):
+            winsAtk += 1
+        else:
+            winsDef += 1
